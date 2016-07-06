@@ -1,0 +1,12 @@
+Package: conditions
+Type: Package
+Title: Standardized conditions for R
+Version: 0.1
+Author: Michel Lang <michellang@gmail.com>
+Maintainer: Michel Lang <michellang@gmail.com>
+Description: The package offers standardized conditions for the most frequently
+    raised exceptions.
+License: BSD_2_clause + file LICENSE
+Suggests:
+    testthat
+RoxygenNote: 5.0.1

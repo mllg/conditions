@@ -1,0 +1,6 @@
+\.swp$
+^\.editorconfig$
+^.travis.yml$
+^README\.md$
+^appveyor\.yml$
+^vignettes/.+\.html$
