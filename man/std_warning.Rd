@@ -7,27 +7,25 @@
 \alias{std_warning}
 \title{Functions to generate standardized warnings}
 \usage{
-deprecated_warning(message, subclass = character(0L), call = sys.call(-1L))
+deprecated_warning(message = "Generic Deprecated Warning",
+  call = sys.call(-1L))
 
-future_warning(message, subclass = character(0L), call = sys.call(-1L))
+future_warning(message = "Generic Future Warning", call = sys.call(-1L))
 
-runtime_warning(message, subclass = character(0L), call = sys.call(-1L))
+runtime_warning(message = "Generic Runtime Warning", call = sys.call(-1L))
 }
 \arguments{
 \item{message}{[\code{character(1)}]\cr
 Warning message.}
 
-\item{subclass}{[\code{character}]\cr
-Additional classes the condition should inherit from.}
-
 \item{call}{[\code{character(1)}]\cr
 Call stack.}
 }
 \value{
-[warning].
+[\code{\link[base]{condition}}].
 }
 \description{
-Implementation for the following error types:
+Implementations to generate specialised conditions for warnings:
 \itemize{
   \item{deprecated_warning}{Some features are deprecated.}
   \item{future_warning}{Something will change semantically in the future.}

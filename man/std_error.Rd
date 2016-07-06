@@ -15,43 +15,40 @@
 \alias{value_error}
 \title{Functions to generate standardized errors}
 \usage{
-assertion_error(message, subclass = character(0L), call = sys.call(-1L))
+assertion_error(message = "Generic Assertion Error", call = sys.call(-1L))
 
-type_error(message, subclass = character(0L), call = sys.call(-1L))
+type_error(message = "Generic Type Error", call = sys.call(-1L))
 
-length_error(message, subclass = character(0L), call = sys.call(-1L))
+length_error(message = "Generic Length Error", call = sys.call(-1L))
 
-missing_error(message, subclass = character(0L), call = sys.call(-1L))
+missing_error(message = "Generic Missing Error", call = sys.call(-1L))
 
-io_error(message, subclass = character(0L), call = sys.call(-1L))
+io_error(message = "Generic IO Error", call = sys.call(-1L))
 
-lookup_error(message, subclass = character(0L), call = sys.call(-1L))
+lookup_error(message = "Generic Lookup Error", call = sys.call(-1L))
 
-index_error(message, subclass = character(0L), call = sys.call(-1L))
+index_error(message = "Generic Index Error", call = sys.call(-1L))
 
-value_error(message, subclass = character(0L), call = sys.call(-1L))
+value_error(message = "Generic Value Error", call = sys.call(-1L))
 
-library_error(message, subclass = character(0L), call = sys.call(-1L))
+library_error(message = "Generic Library Error", call = sys.call(-1L))
 
-name_error(message, subclass = character(0L), call = sys.call(-1L))
+name_error(message = "Generic Name Error", call = sys.call(-1L))
 
-runtime_error(message, subclass = character(0L), call = sys.call(-1L))
+runtime_error(message = "Generic Runtime Error", call = sys.call(-1L))
 }
 \arguments{
 \item{message}{[\code{character(1)}]\cr
 Error message.}
 
-\item{subclass}{[\code{character}]\cr
-Additional classes the condition should inherit from.}
-
 \item{call}{[\code{character(1)}]\cr
 Call stack.}
 }
 \value{
-[raised exception].
+[\code{\link[base]{condition}}].
 }
 \description{
-Implementations to throw errors with the following types:
+Implementations to generate specialised conditions for errors:
 \itemize{
   \item{assertion_error}{Thrown in assertions.}
   \item{type_error}{Unexpected type/class.}

@@ -3,7 +3,7 @@
 #' @rdname std_warning
 #'
 #' @description
-#' Implementation for the following error types:
+#' Implementations to generate specialised conditions for warnings:
 #' \itemize{
 #'   \item{deprecated_warning}{Some features are deprecated.}
 #'   \item{future_warning}{Something will change semantically in the future.}
@@ -12,27 +12,25 @@
 #'
 #' @param message [\code{character(1)}]\cr
 #'   Warning message.
-#' @param subclass [\code{character}]\cr
-#'   Additional classes the condition should inherit from.
 #' @param call [\code{character(1)}]\cr
 #'   Call stack.
-#' @return [warning].
+#' @return [\code{\link[base]{condition}}].
 NULL
 
 #' @rdname std_warning
 #' @export
-deprecated_warning = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  warning(condition("warning", message, c("deprecated_warning", subclass), call))
+deprecated_warning = function(message = "Generic Deprecated Warning", call = sys.call(-1L)) {
+  condition("warning", message, "deprecated_warning", call)
 }
 
 #' @rdname std_warning
 #' @export
-future_warning = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  warning(condition("warning", message, c("future_warning", subclass), call))
+future_warning = function(message = "Generic Future Warning", call = sys.call(-1L)) {
+  condition("warning", message, "future_warning", call)
 }
 
 #' @rdname std_warning
 #' @export
-runtime_warning = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  warning(condition("warning", message, c("runtime_warning", subclass), call))
+runtime_warning = function(message = "Generic Runtime Warning", call = sys.call(-1L)) {
+  condition("warning", message, "runtime_warning", call)
 }

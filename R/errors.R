@@ -3,7 +3,7 @@
 #' @rdname std_error
 #'
 #' @description
-#' Implementations to throw errors with the following types:
+#' Implementations to generate specialised conditions for errors:
 #' \itemize{
 #'   \item{assertion_error}{Thrown in assertions.}
 #'   \item{type_error}{Unexpected type/class.}
@@ -20,75 +20,73 @@
 #'
 #' @param message [\code{character(1)}]\cr
 #'   Error message.
-#' @param subclass [\code{character}]\cr
-#'   Additional classes the condition should inherit from.
 #' @param call [\code{character(1)}]\cr
 #'   Call stack.
-#' @return [raised exception].
+#' @return [\code{\link[base]{condition}}].
 NULL
 
 #' @rdname std_error
 #' @export
-assertion_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("assertion_error", subclass), call))
+assertion_error = function(message = "Generic Assertion Error", call = sys.call(-1L)) {
+  condition("error", message, "assertion_error", call)
 }
 
 #' @rdname std_error
 #' @export
-type_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("type_error", subclass), call))
+type_error = function(message = "Generic Type Error", call = sys.call(-1L)) {
+  condition("error", message, "type_error", call)
 }
 
 #' @rdname std_error
 #' @export
-length_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("length_error", subclass), call))
+length_error = function(message = "Generic Length Error", call = sys.call(-1L)) {
+  condition("error", message, "length_error", call)
 }
 
 #' @rdname std_error
 #' @export
-missing_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("missing_error", subclass), call))
+missing_error = function(message = "Generic Missing Error", call = sys.call(-1L)) {
+  condition("error", message, "missing_error", call)
 }
 
 #' @rdname std_error
 #' @export
-io_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("io_error", subclass), call))
+io_error = function(message = "Generic IO Error", call = sys.call(-1L)) {
+  condition("error", message, "io_error", call)
 }
 
 #' @rdname std_error
 #' @export
-lookup_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("lookup_error", subclass), call))
+lookup_error = function(message = "Generic Lookup Error", call = sys.call(-1L)) {
+  condition("error", message, "lookup_error", call)
 }
 
 #' @rdname std_error
 #' @export
-index_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("index_error", subclass), call))
+index_error = function(message = "Generic Index Error", call = sys.call(-1L)) {
+  condition("error", message, "index_error", call)
 }
 
 #' @rdname std_error
 #' @export
-value_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("value_error", subclass), call))
+value_error = function(message = "Generic Value Error", call = sys.call(-1L)) {
+  condition("error", message, "value_error", call)
 }
 
 #' @rdname std_error
 #' @export
-library_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("library_error", subclass), call))
+library_error = function(message = "Generic Library Error", call = sys.call(-1L)) {
+  condition("error", message, "library_error", call)
 }
 
 #' @rdname std_error
 #' @export
-name_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("name_error", subclass), call))
+name_error = function(message = "Generic Name Error", call = sys.call(-1L)) {
+  condition("error", message, "name_error", call)
 }
 
 #' @rdname std_error
 #' @export
-runtime_error = function(message, subclass = character(0L), call = sys.call(-1L)) {
-  stop(condition("error", message, c("runtime_error", subclass), call))
+runtime_error = function(message = "Generic Runtime Error", call = sys.call(-1L)) {
+  condition("error", message, "runtime_error", call)
 }
