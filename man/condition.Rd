@@ -2,25 +2,36 @@
 % Please edit documentation in R/condition.R
 \name{condition}
 \alias{condition}
+\alias{condition_error}
+\alias{condition_message}
+\alias{condition_warning}
 \title{Generate a custom condition}
 \usage{
-condition(type, message, class = character(0L), call = sys.call(-1L))
+condition(type, class = character(0L), message, call = sys.call(-1L))
+
+condition_error(class, message, call = sys.call(-1L))
+
+condition_warning(class, message, call = sys.call(-1L))
+
+condition_message(class, message, call = sys.call(-1L))
 }
 \arguments{
 \item{type}{[\code{character(1)}]\cr
 Should be one of \dQuote{error}, \dQuote{warning} or \dQuote{message}.}
 
+\item{class}{[\code{character}]\cr
+Classes for the condition.
+The functions \code{condition_error}, \code{condition_warning} and \code{condition_message}
+automatically append the respective type with an underscore (see example).}
+
 \item{message}{[\code{character(1)}]\cr
 Information about the condition.}
 
-\item{class}{[\code{character}]\cr
-Classes for the condition.}
-
-\item{call}{[\code{character(1)}]\cr
+\item{call}{[\code{call} | \code{NULL}]\cr
 Call stack.}
 }
 \value{
-[\code{condition}] inheriting from dQuote{class} and \dQuote{type}.
+[\code{condition}].
 }
 \description{
 Helper function to generate a custom \code{\link[base]{condition}}.
