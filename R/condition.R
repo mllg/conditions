@@ -15,6 +15,6 @@
 #' @export
 condition = function(type, message, class = character(0L), call = sys.call(-1L)) {
   x = list(message = message, call = call)
-  class(x) = c(class, type, "condition")
+  class(x) = c(class, match.arg(type, c("error", "warning", "message")), "condition")
   x
 }

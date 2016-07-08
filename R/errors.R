@@ -26,67 +26,78 @@
 NULL
 
 #' @rdname std_error
+#' @useDynLib conditions assertion_error_
 #' @export
 assertion_error = function(message = "Generic Assertion Error", call = sys.call(-1L)) {
-  condition("error", message, "assertion_error", call)
+  .Call(assertion_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions type_error_
 #' @export
 type_error = function(message = "Generic Type Error", call = sys.call(-1L)) {
-  condition("error", message, "type_error", call)
+  .Call(type_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions length_error_
 #' @export
 length_error = function(message = "Generic Length Error", call = sys.call(-1L)) {
-  condition("error", message, "length_error", call)
+  .Call(length_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions missing_error_
 #' @export
 missing_error = function(message = "Generic Missing Error", call = sys.call(-1L)) {
-  condition("error", message, "missing_error", call)
+  .Call(missing_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions io_error_
 #' @export
 io_error = function(message = "Generic IO Error", call = sys.call(-1L)) {
-  condition("error", message, "io_error", call)
+  .Call(io_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions lookup_error_
 #' @export
 lookup_error = function(message = "Generic Lookup Error", call = sys.call(-1L)) {
-  condition("error", message, "lookup_error", call)
+  .Call(lookup_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions index_error_
 #' @export
 index_error = function(message = "Generic Index Error", call = sys.call(-1L)) {
-  condition("error", message, "index_error", call)
+  .Call(index_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions value_error_
 #' @export
 value_error = function(message = "Generic Value Error", call = sys.call(-1L)) {
-  condition("error", message, "value_error", call)
+  .Call(value_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions library_error_
 #' @export
 library_error = function(message = "Generic Library Error", call = sys.call(-1L)) {
-  condition("error", message, "library_error", call)
+  .Call(library_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions name_error_
 #' @export
 name_error = function(message = "Generic Name Error", call = sys.call(-1L)) {
-  condition("error", message, "name_error", call)
+  .Call(name_error_, message, call)
 }
 
 #' @rdname std_error
+#' @useDynLib conditions runtime_error_
 #' @export
 runtime_error = function(message = "Generic Runtime Error", call = sys.call(-1L)) {
-  condition("error", message, "runtime_error", call)
+  .Call(runtime_error_, message, call)
 }
