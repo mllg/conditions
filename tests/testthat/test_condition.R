@@ -1,4 +1,4 @@
-context("condition constructor")
+context("conditions")
 
 check_structure = function(x, classes = character(0), pattern = NULL) {
   for (cl in c(classes, "condition"))
@@ -30,7 +30,6 @@ test_that("base condition constructors", {
   check_structure(x, c("missing_message", "message"), "msg")
 })
 
-
 test_that("standardized condition constructors", {
   ns = asNamespace("conditions")
   funs = ls(ns)
@@ -41,4 +40,10 @@ test_that("standardized condition constructors", {
     parts = strsplit(name, "_")[[1L]]
     check_structure(x, c(name, parts[2L]), pattern = "<grepme>")
   }
+})
+
+test_that("argument checks", {
+  expect_error(io_error(0), "string")
+  expect_error(io_error(NULL), "string")
+  expect_error(io_error(0), "string")
 })

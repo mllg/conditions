@@ -5,19 +5,20 @@
 #' @description
 #' Implementations to generate standardized conditions:
 #' \itemize{
-#'   \item{assertion}{Thrown in assertions.}
-#'   \item{type}{Unexpected type/class.}
-#'   \item{length}{Unexpected length.}
-#'   \item{missing}{Unexpected missing values.}
-#'   \item{lookup}{Named subelement does not exist.}
+#'   \item{assertion}{Assertion (on user input) failed.}
+#'   \item{deprecated}{Feature is deprecated.}
+#'   \item{dimension}{Wrong dimension.}
+#'   \item{future}{Feature is subject to change in the future.}
 #'   \item{index}{Subscript out of range.}
-#'   \item{value}{Inappropriate value.}
-#'   \item{name}{Failed lookup of a global variable.}
 #'   \item{io}{File/directory not found or accessible.}
+#'   \item{length}{Wrong length.}
 #'   \item{library}{Required package not installed.}
+#'   \item{lookup}{Named subelement does not exist.}
+#'   \item{missing}{Missing values.}
+#'   \item{name}{Failed lookup of a global variable.}
 #'   \item{runtime}{Something else which does not fit in any other category went wrong.}
-#'   \item{deprecated}{Some features are deprecated.}
-#'   \item{future}{Something will change semantically in the future.}
+#'   \item{type}{Unexpected type/class.}
+#'   \item{value}{Inappropriate value.}
 #' }
 #'
 #' @param message [\code{character(1)}]\cr
