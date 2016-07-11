@@ -2,101 +2,101 @@
 ### See [conditions]/inst/autogen/autogen.R.
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-assertion_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "assertion", message, call)
+assertion_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "assertion", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-deprecated_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "deprecated", message, call)
+deprecated_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "deprecated", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-dimension_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "dimension", message, call)
+dimension_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "dimension", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-future_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "future", message, call)
+future_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "future", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-index_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "index", message, call)
+index_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "index", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-io_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "io", message, call)
+io_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "io", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-length_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "length", message, call)
+length_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "length", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-library_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "library", message, call)
+library_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "library", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-lookup_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "lookup", message, call)
+lookup_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "lookup", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-missing_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "missing", message, call)
+missing_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "missing", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-name_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "name", message, call)
+name_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "name", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-runtime_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "runtime", message, call)
+runtime_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "runtime", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-type_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "type", message, call)
+type_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "type", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_error_
+#' @useDynLib conditions condition_message_
 #' @export
-value_error = function(message, call = sys.call(-1L)) {
-  .Call(condition_error_, "value", message, call)
+value_message = function(message, call = sys.call(-1L)) {
+  .Call(condition_message_, "value", message, call)
 }
 
 #' @rdname std_conditions
@@ -198,100 +198,99 @@ value_warning = function(message, call = sys.call(-1L)) {
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-assertion_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "assertion", message, call)
+assertion_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "assertion", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-deprecated_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "deprecated", message, call)
+deprecated_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "deprecated", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-dimension_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "dimension", message, call)
+dimension_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "dimension", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-future_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "future", message, call)
+future_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "future", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-index_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "index", message, call)
+index_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "index", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-io_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "io", message, call)
+io_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "io", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-length_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "length", message, call)
+length_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "length", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-library_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "library", message, call)
+library_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "library", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-lookup_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "lookup", message, call)
+lookup_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "lookup", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-missing_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "missing", message, call)
+missing_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "missing", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-name_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "name", message, call)
+name_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "name", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-runtime_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "runtime", message, call)
+runtime_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "runtime", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-type_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "type", message, call)
+type_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "type", message, call)
 }
 
 #' @rdname std_conditions
-#' @useDynLib conditions condition_message_
+#' @useDynLib conditions condition_error_
 #' @export
-value_message = function(message, call = sys.call(-1L)) {
-  .Call(condition_message_, "value", message, call)
+value_error = function(message, call = sys.call(-1L)) {
+  .Call(condition_error_, "value", message, call)
 }
-

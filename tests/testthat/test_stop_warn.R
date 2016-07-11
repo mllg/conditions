@@ -1,19 +1,14 @@
 context("stop/warn called from C")
 
-cstop = function(condition) {
-  .Call(stop_, condition)
-}
-
-cwarn = function(condition) {
-  .Call(warn_, condition)
-}
+mystop = function(condition) { .Call(cstop, condition) }
+mywarn = function(condition) { .Call(cwarn, condition) }
 
 test_that("stop", {
-  expect_error(cstop("foo"), "inherit")
+  expect_error(mystop("foo"), "inherit")
   cond = missing_error("foo")
-  expect_error(cstop(cond), "foo")
+  expect_error(mystop(cond), "foo")
 
-  res = tryCatch(cstop(cond),
+  res = tryCatch(mystop(cond),
     condition = function(c) { c }
   )
   expect_is(res, "missing_error")
@@ -21,11 +16,11 @@ test_that("stop", {
 })
 
 test_that("warn", {
-  expect_error(cwarn("foo"), "inherit")
+  expect_error(mywarn("foo"), "inherit")
   cond = missing_warning("foo")
-  expect_warning(cwarn(cond), "foo")
+  expect_warning(mywarn(cond), "foo")
 
-  res = tryCatch(cwarn(cond),
+  res = tryCatch(mywarn(cond),
     condition = function(c) { c }
   )
   expect_is(res, "missing_warning")

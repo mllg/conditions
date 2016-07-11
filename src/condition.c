@@ -21,63 +21,29 @@ static inline SEXP condition(const char * type, const char * class, const char *
     return cond;
 }
 
-void static inline check_class(SEXP class) {
+static inline void check_class(SEXP class) {
     if (!isString(class) || length(class) != 1 || STRING_ELT(class, 0) == NA_STRING)
-        stop(condition_error("assertion", "Argument 'class' must be a non-missing string", R_NilValue));
+        cstop(condition_error("assertion", "Argument 'class' must be a non-missing string", R_NilValue));
 }
 
-void static inline check_message(SEXP message) {
+static inline void check_message(SEXP message) {
     if (!isString(message) || length(message) != 1 || STRING_ELT(message, 0) == NA_STRING)
-        stop(condition_error("assertion", "Argument 'message' must be a non-missing string", R_NilValue));
+        cstop(condition_error("assertion", "Argument 'message' must be a non-missing string", R_NilValue));
 }
 
-void static inline check_condition(SEXP condition) {
+static inline void check_condition(SEXP condition) {
     if (!inherits(condition, "condition"))
-        stop(condition_error("assertion", "Argument 'condition' must inherit from class 'condition'", R_NilValue));
+        cstop(condition_error("assertion", "Argument 'condition' must inherit from class 'condition'", R_NilValue));
 }
 
-SEXP condition_error(const char * class, const char * message, SEXP call) {
+static inline SEXP make_condition(const char * type, const char * class, const char * message, SEXP call) {
     char buf[256];
-    snprintf(buf, sizeof buf, "%s_error", class);
-    return condition("error", buf, message, call);
-}
-
-SEXP condition_warning(const char * class, const char * message, SEXP call) {
-    char buf[256];
-    snprintf(buf, sizeof buf, "%s_warning", class);
-    return condition("warning", buf, message, call);
+    snprintf(buf, sizeof buf, "%s_%s", class, type);
+    return condition(type, buf, message, call);
 }
 
 SEXP condition_message(const char * class, const char * message, SEXP call) {
-    char buf[256];
-    snprintf(buf, sizeof buf, "%s_message", class);
-    return condition("message", buf, message, call);
-}
-
-void warn(SEXP condition) {
-    check_condition(condition);
-    SEXP call = PROTECT(Rf_lang2(Rf_install("warning"), condition));
-    Rf_eval(call, R_GlobalEnv);
-    UNPROTECT(1);
-}
-
-void stop(SEXP condition) {
-    check_condition(condition);
-    SEXP call = PROTECT(Rf_lang2(Rf_install("stop"), condition));
-    Rf_eval(call, R_GlobalEnv);
-    UNPROTECT(1);
-}
-
-SEXP condition_error_(SEXP class, SEXP message, SEXP call) {
-    check_class(class);
-    check_message(message);
-    return condition_error(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
-}
-
-SEXP condition_warning_(SEXP class, SEXP message, SEXP call) {
-    check_class(class);
-    check_message(message);
-    return condition_warning(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
+    return make_condition("message", class, message, call);
 }
 
 SEXP condition_message_(SEXP class, SEXP message, SEXP call) {
@@ -86,12 +52,42 @@ SEXP condition_message_(SEXP class, SEXP message, SEXP call) {
     return condition_message(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
 }
 
-SEXP warn_(SEXP condition) {
-    warn(condition);
+SEXP condition_warning(const char * class, const char * message, SEXP call) {
+    return make_condition("warning", class, message, call);
+}
+
+SEXP condition_warning_(SEXP class, SEXP message, SEXP call) {
+    check_class(class);
+    check_message(message);
+    return condition_warning(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
+}
+
+SEXP condition_error(const char * class, const char * message, SEXP call) {
+    return make_condition("error", class, message, call);
+}
+
+SEXP condition_error_(SEXP class, SEXP message, SEXP call) {
+    check_class(class);
+    check_message(message);
+    return condition_error(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
+}
+
+static inline SEXP signal(SEXP condition, const char * fun) {
+    check_condition(condition);
+    SEXP call = PROTECT(Rf_lang2(Rf_install(fun), condition));
+    Rf_eval(call, R_GlobalEnv);
+    UNPROTECT(1);
     return R_NilValue;
 }
 
-SEXP stop_(SEXP condition) {
-    stop(condition);
-    return R_NilValue;
+SEXP cmessage(SEXP condition) {
+    return signal(condition, "message");
+}
+
+SEXP cwarn(SEXP condition) {
+    return signal(condition, "warning");
+}
+
+SEXP cstop(SEXP condition) {
+    return signal(condition, "stop");
 }
