@@ -12,8 +12,8 @@ extern "C" {
 SEXP attribute_hidden condition_error(const char * class, const char * message, SEXP call, ...);
 SEXP attribute_hidden condition_warning(const char * class, const char * message, SEXP call, ...);
 SEXP attribute_hidden condition_message(const char * class, const char * message, SEXP call, ...);
-void attribute_hidden stop(SEXP condition);
-void attribute_hidden warn(SEXP condition);
+void attribute_hidden cstop(SEXP condition);
+void attribute_hidden cwarn(SEXP condition);
 
 #ifdef __cplusplus
 }

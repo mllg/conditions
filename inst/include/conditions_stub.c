@@ -25,5 +25,5 @@
 CONDITION(condition_error);
 CONDITION(condition_warning);
 CONDITION(condition_message);
-SIGNAL(stop);
-SIGNAL(warn);
+SIGNAL(cstop);
+SIGNAL(cwarn);
