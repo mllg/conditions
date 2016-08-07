@@ -72,7 +72,7 @@ SEXP condition_error_(SEXP class, SEXP message, SEXP call) {
     return condition_error(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
 }
 
-static inline static SEXP signal_condition(SEXP condition, const char * fun) {
+static inline SEXP signal_condition(SEXP condition, const char * fun) {
     check_condition(condition);
     SEXP call = PROTECT(Rf_lang2(Rf_install(fun), condition));
     Rf_eval(call, R_GlobalEnv);
