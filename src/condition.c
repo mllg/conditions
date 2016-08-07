@@ -72,7 +72,7 @@ SEXP condition_error_(SEXP class, SEXP message, SEXP call) {
     return condition_error(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
 }
 
-static inline SEXP signal(SEXP condition, const char * fun) {
+static inline static SEXP signal_condition(SEXP condition, const char * fun) {
     check_condition(condition);
     SEXP call = PROTECT(Rf_lang2(Rf_install(fun), condition));
     Rf_eval(call, R_GlobalEnv);
@@ -81,13 +81,13 @@ static inline SEXP signal(SEXP condition, const char * fun) {
 }
 
 SEXP cmessage(SEXP condition) {
-    return signal(condition, "message");
+    return signal_condition(condition, "message");
 }
 
 SEXP cwarn(SEXP condition) {
-    return signal(condition, "warning");
+    return signal_condition(condition, "warning");
 }
 
 SEXP cstop(SEXP condition) {
-    return signal(condition, "stop");
+    return signal_condition(condition, "stop");
 }
