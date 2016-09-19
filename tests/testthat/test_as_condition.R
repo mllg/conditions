@@ -1,17 +1,5 @@
 context("as_conditions")
 
-check_structure = function(x, classes = character(0), pattern = NULL) {
-  for (cl in c(classes, "condition"))
-    expect_is(x, cl)
-  expect_length(x, 2)
-  expect_true(setequal(names(x), c("message", "call")))
-  expect_is(x$message, "character")
-  expect_length(x$message, 1)
-  if (!is.null(pattern))
-    expect_true(grepl(pattern, x$message))
-  expect_true(is.null(x$call) || is.call(x$call))
-}
-
 test_that("standardized condition converters", {
   ns = asNamespace("conditions")
   funs = ls(ns)

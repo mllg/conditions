@@ -21,14 +21,18 @@ static SEXP condition(const char * type, const char * class, const char * messag
     return cond;
 }
 
+static inline Rboolean is_string(SEXP str) {
+    return (isString(str) && length(str) == 1 && STRING_ELT(str, 0) != NA_STRING);
+}
+
 static inline void check_class(SEXP class) {
-    if (!isString(class) || length(class) != 1 || STRING_ELT(class, 0) == NA_STRING)
-        cstop(condition_error("assertion", "Argument 'class' must be a non-missing string", R_NilValue));
+    if (!is_string(class) || length(STRING_ELT(class, 0)) == 0)
+        cstop(condition_error("assertion", "Argument 'class' must be a single, non-missing string", R_NilValue));
 }
 
 static inline void check_message(SEXP message) {
-    if (!isString(message) || length(message) != 1 || STRING_ELT(message, 0) == NA_STRING)
-        cstop(condition_error("assertion", "Argument 'message' must be a non-missing string", R_NilValue));
+    if (!is_string(message))
+        cstop(condition_error("assertion", "Argument 'message' must be a single, non-missing string", R_NilValue));
 }
 
 static inline void check_condition(SEXP condition) {
