@@ -1,4 +1,4 @@
-#include <string.h>
+#include <stdbool.h>
 #include "condition.h"
 
 static SEXP condition(const char * type, const char * class, const char * message, SEXP call) {
@@ -21,13 +21,18 @@ static SEXP condition(const char * type, const char * class, const char * messag
     return cond;
 }
 
-static inline Rboolean is_string(SEXP str) {
+static inline bool is_string(SEXP str) {
     return (isString(str) && length(str) == 1 && STRING_ELT(str, 0) != NA_STRING);
 }
 
 static inline void check_class(SEXP class) {
     if (!is_string(class) || length(STRING_ELT(class, 0)) == 0)
         cstop(condition_error("assertion", "Argument 'class' must be a single, non-missing string", R_NilValue));
+}
+
+static inline void check_call(SEXP call) {
+    if (!isLanguage(call))
+        cstop(condition_error("assertion", "Argument 'call' must be NULL or a language object", R_NilValue));
 }
 
 static inline void check_message(SEXP message) {
@@ -53,6 +58,7 @@ SEXP condition_message(const char * class, const char * message, SEXP call) {
 SEXP condition_message_(SEXP class, SEXP message, SEXP call) {
     check_class(class);
     check_message(message);
+    check_call(call);
     return condition_message(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
 }
 
@@ -63,6 +69,7 @@ SEXP condition_warning(const char * class, const char * message, SEXP call) {
 SEXP condition_warning_(SEXP class, SEXP message, SEXP call) {
     check_class(class);
     check_message(message);
+    check_call(call);
     return condition_warning(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
 }
 
@@ -73,6 +80,7 @@ SEXP condition_error(const char * class, const char * message, SEXP call) {
 SEXP condition_error_(SEXP class, SEXP message, SEXP call) {
     check_class(class);
     check_message(message);
+    check_call(call);
     return condition_error(CHAR(STRING_ELT(class, 0)), CHAR(STRING_ELT(message, 0)), call);
 }
 

@@ -51,4 +51,6 @@ test_that("argument checks", {
   expect_error(condition_message("", "msg"), "non-missing string")
   expect_error(condition_message("class", NA), "non-missing string")
   expect_error(condition_message("class", letters), "non-missing string")
+  expect_error(condition_message("class", "msg", call = NA), "call")
+  expect_error(condition_message("class", "msg", call = logical(0)), "call")
 })
