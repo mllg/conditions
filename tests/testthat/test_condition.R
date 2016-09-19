@@ -12,7 +12,6 @@ check_structure = function(x, classes = character(0), pattern = NULL) {
   expect_true(is.null(x$call) || is.call(x$call))
 }
 
-
 test_that("base condition constructors", {
   x = condition("error", "assertion_error", "foo")
   check_structure(x, c("assertion_error", "error"), "foo")
@@ -33,7 +32,7 @@ test_that("base condition constructors", {
 test_that("standardized condition constructors", {
   ns = asNamespace("conditions")
   funs = ls(ns)
-  funs = funs[grepl("^[a-z]+_(error|warning|message)", funs) & !grepl("^condition_", funs)]
+  funs = funs[grepl("^[a-z]+_(error|warning|message)", funs) & !grepl("^(condition_|as_)", funs)]
   for (name in funs) {
     f = match.fun(name)
     x = f("<grepme>")

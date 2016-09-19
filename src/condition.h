@@ -10,6 +10,7 @@ SEXP condition_warning(const char * class, const char * message, SEXP call);
 SEXP condition_warning_(SEXP class, SEXP message, SEXP call);
 SEXP condition_message(const char * class, const char * message, SEXP call);
 SEXP condition_message_(SEXP class, SEXP message, SEXP call);
+SEXP cmessage(SEXP condition);
 SEXP cwarn(SEXP condition);
 SEXP cstop(SEXP condition);
 

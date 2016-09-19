@@ -1,7 +1,7 @@
 #include <string.h>
 #include "condition.h"
 
-static inline SEXP condition(const char * type, const char * class, const char * message, SEXP call) {
+static SEXP condition(const char * type, const char * class, const char * message, SEXP call) {
     SEXP cond = PROTECT(allocVector(VECSXP, 2));
     SET_VECTOR_ELT(cond, 0, mkString(message));
     SET_VECTOR_ELT(cond, 1, call);
