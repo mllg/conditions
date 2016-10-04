@@ -1,14 +1,11 @@
 # conditions
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/conditions)](http://cran.r-project.org/package=conditions)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/conditions)](https://cran.r-project.org/package=conditions)
 [![Build Status](https://travis-ci.org/mllg/conditions.svg?branch=master)](https://travis-ci.org/mllg/conditions)
 [![Build status](https://ci.appveyor.com/api/projects/status/19a7aulu94031hny?svg=true)](https://ci.appveyor.com/project/mllg/conditions/branch/master)
 [![Coverage Status](https://img.shields.io/coveralls/mllg/conditions.svg)](https://coveralls.io/r/mllg/conditions?branch=master)
 
-
-## Standardized conditions for R
-
-Provides standardized conditions and allows to conveniently create own conditions.
+This package provides standardized conditions and allows to conveniently create own conditions.
 Conditions can be caught and handled via `tryCatch`.
 Consider the following small wrapper around `log(x)`:
 ```{r}
@@ -24,7 +21,7 @@ f = function(x) {
   log(x)
 }
 ```
-The functions `type_error`, `length_error` and `value_error` create specialized, typed conditions which are signaled by `stop()`.
+The functions `type_error()`, `length_error()` and `value_error()` create specialized, typed conditions which are signaled by `stop()`.
 Given these types, the user can now easily react the misspecified input in a meaningful way.
 For instance, to suppress the value error for negative input and instead just return `0`, the function can be called with:
 ```{r}
@@ -75,7 +72,7 @@ tryCatch(sqrt(-1), warning = as_value_error("sqrt of negative value"))
 ```
 
 ## Installation
-Install via [devtools](http://cran.r-project.org/package=devtools):
+Install via [devtools](https://cran.r-project.org/package=devtools):
 ```{R}
 devtools::install_github("mllg/conditions")
 ```
