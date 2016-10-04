@@ -153,7 +153,8 @@ If provided, overwrites the original condition message.}
 }
 \description{
 These functions are intended to change the class of conditions.
-This is especially useful in combination with \code{\link[base]{tryCatch}}.
+In combination with \code{\link[base]{tryCatch}}, unspecified conditions
+can easily be casted to a more specific type.
 See \code{\link{condition}} for a short explanation about the predefined
 condition classes.
 }
@@ -161,6 +162,8 @@ condition classes.
 \dontrun{
 # Turn the warning of sqrt() into a value error
 tryCatch(sqrt(-1), warning = as_error("value"))
+
+# Or, alternatively with a custom message:
 tryCatch(sqrt(-1), warning = as_value_error("sqrt of negative value"))
 }
 }
