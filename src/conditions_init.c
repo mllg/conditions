@@ -1,6 +1,7 @@
 #include <R.h>
 #include <R_ext/Rdynload.h>
 #include "condition.h"
+#include "signal.h"
 
 void R_init_conditions(DllInfo *info) {
   R_RegisterCCallable("conditions", "condition_error", (DL_FUNC) &condition_error);

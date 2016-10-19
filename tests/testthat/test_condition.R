@@ -42,15 +42,16 @@ test_that("standardized condition constructors", {
 })
 
 test_that("argument checks", {
+  str.error = "non-missing, non-empty string"
   expect_error(io_error(0), "string")
   expect_error(io_error(NULL), "string")
   expect_error(io_error(0), "string")
-  expect_error(condition_message(NA_character_, "msg"), "non-missing string")
-  expect_error(condition_message(character(0), "msg"), "non-missing string")
-  expect_error(condition_message(c("a", "b"), "msg"), "non-missing string")
-  expect_error(condition_message("", "msg"), "non-missing string")
-  expect_error(condition_message("class", NA), "non-missing string")
-  expect_error(condition_message("class", letters), "non-missing string")
+  expect_error(condition_message(NA_character_, "msg"), str.error)
+  expect_error(condition_message(character(0), "msg"), str.error)
+  expect_error(condition_message(c("a", "b"), "msg"), str.error)
+  expect_error(condition_message("", "msg"), str.error)
+  expect_error(condition_message("class", NA), str.error)
+  expect_error(condition_message("class", letters), str.error)
   expect_error(condition_message("class", "msg", call = NA), "call")
   expect_error(condition_message("class", "msg", call = logical(0)), "call")
 })

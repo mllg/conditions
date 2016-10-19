@@ -27,6 +27,7 @@ CONDITION(condition_warning);
 CONDITION(condition_message);
 SIGNAL(cstop);
 SIGNAL(cwarn);
+SIGNAL(cmessage);
 
 #undef CONDITION
 #undef SIGNAL
