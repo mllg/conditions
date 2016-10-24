@@ -1,4 +1,5 @@
 \.swp$
+^\.agignore$
 ^\.editorconfig$
 ^.travis.yml$
 ^README\.md$
