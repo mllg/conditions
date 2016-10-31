@@ -5,9 +5,18 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/19a7aulu94031hny?svg=true)](https://ci.appveyor.com/project/mllg/conditions/branch/master)
 [![Coverage Status](https://img.shields.io/coveralls/mllg/conditions.svg)](https://coveralls.io/r/mllg/conditions?branch=master)
 
+## Installation
+Install via [devtools](https://cran.r-project.org/package=devtools):
+```{R}
+devtools::install_github("mllg/conditions")
+```
+
+## Base functionality
+
 This package provides standardized conditions and allows to conveniently create own conditions.
 Conditions can be caught and handled via `tryCatch`.
 Consider the following small wrapper around `log(x)`:
+
 ```{r}
 library(conditions)
 
@@ -35,7 +44,25 @@ tryCatch(f(1:10),
   length_error = function(e) { warning(e); NA })
 ```
 
-Package developers are encouraged to use the standardized condition types where appropriate (all can be signaled as error, warning or message):
+It is also possible to catch warnings and messages, as illustrated here:
+```{r}
+f = function(x) {
+  if (x %% 2)
+    warning(value_warning("foo"))
+  else
+    message(value_message("bar"))
+}
+
+tryCatch(f(1),
+  value_warning = function(e) paste("Catched warning:", e$message),
+  value_message = function(e) paste("Catched message:", e$message)
+)
+```
+
+
+## Standardized conditions
+
+Package developers are encouraged to use the standardized condition types where appropriate (derived from [Python exceptions](https://docs.python.org/2/library/exceptions.html)):
 
 * `assertion`: Assertion (on user input) failed.
 * `deprecated`: Feature is deprecated.
@@ -52,15 +79,20 @@ Package developers are encouraged to use the standardized condition types where 
 * `type`: Unexpected type/class.
 * `value`: Inappropriate value.
 
-However, it is often necessary and convenient to create custom error conditions.
+All conditions can be signaled as error, warning or message, and the package provides constructors for each class (e.g., `library_error()`, `value_warning()` or `deprecated_message()`).
+
+
+## Custom conditions
+
+It is often both necessary and convenient to create custom error conditions.
 Lets say you want to further specialize the `missing_error` to be able to differentiate between regular `NA` values and double `NaN` values.
-The function `condition_warning` constructs a warning condition with a custom type and message:
+The function `condition_warning` constructs a warning condition with a custom type and message (here we use `nan_warning` and `na_warning`):
 ```{r}
 res = mean(integer(0), na.rm = TRUE)
 if (is.nan(res)) {
   warning(condition_warning("nan", "NaN produced in mean()"))
 } else if (is.na(res)) {
-  warning(condition_warning("missing", "Missing value produced in mean()"))
+  warning(condition_warning("na", "NA values produced in mean()"))
 }
 ```
 
@@ -69,10 +101,4 @@ The package also assists in augmenting third party functions with specialized co
 # sqrt(-1) signals a warning and returns NaN.
 # Suppress the warning and instead raise a value_error
 tryCatch(sqrt(-1), warning = as_value_error("sqrt of negative value"))
-```
-
-## Installation
-Install via [devtools](https://cran.r-project.org/package=devtools):
-```{R}
-devtools::install_github("mllg/conditions")
 ```
