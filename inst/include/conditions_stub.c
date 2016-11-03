@@ -2,16 +2,16 @@
 #include "conditions.h"
 
 #define CONDITION(NAME) \
-    SEXP attribute_hidden NAME(const char * class, const char * message, SEXP call, ...) { \
+    SEXP attribute_hidden NAME(const char * class, const char * message, ...) { \
         static SEXP(*fun)(const char *, const char *, SEXP) = NULL; \
         if (fun == NULL) \
             fun = (SEXP(*)(const char *, const char *, SEXP)) R_GetCCallable("conditions", #NAME); \
         char buf[512]; \
         va_list vargs; \
-        va_start(vargs, call); \
+        va_start(vargs, message); \
         vsnprintf(buf, sizeof buf, message, vargs); \
         va_end(vargs); \
-        return fun(class, buf, call); \
+        return fun(class, buf, R_NilValue); \
     };
 
 #define SIGNAL(NAME) \
