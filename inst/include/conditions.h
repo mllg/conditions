@@ -14,6 +14,7 @@ SEXP attribute_hidden condition_warning(const char * class, const char * message
 SEXP attribute_hidden condition_message(const char * class, const char * message, SEXP call, ...);
 void attribute_hidden cstop(SEXP condition);
 void attribute_hidden cwarn(SEXP condition);
+void attribute_hidden cmessage(SEXP condition);
 
 #ifdef __cplusplus
 }
