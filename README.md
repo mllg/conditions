@@ -30,13 +30,12 @@ f = function(x) {
   log(x)
 }
 ```
-The functions `type_error()`, `length_error()` and `value_error()` create specialized, typed conditions which are signaled by `stop()`.
-Given these types, the user can now easily react the misspecified input in a meaningful way.
+The functions `type_error()`, `length_error()` and `value_error()` create specialized conditions which are internally signaled using `stop()`.
+By giving conditions a more specific type, the user can react to the misspecified input in a meaningful way.
 For instance, to suppress the value error for negative input and instead just return `0`, the function can be called with:
 ```{r}
 tryCatch(f(-5), value_error = function(e) 0)
 ```
-We can simultaneously adept the behaviour of other error types, too.
 Here, we additionally catch the length error, turn it into a warning and return `NA`:
 ```{r}
 tryCatch(f(1:10),
@@ -79,7 +78,7 @@ Package developers are encouraged to use the standardized condition types where 
 * `type`: Unexpected type/class.
 * `value`: Inappropriate value.
 
-All conditions can be signaled as error, warning or message, and the package provides constructors for each class (e.g., `library_error()`, `value_warning()` or `deprecated_message()`).
+All conditions come as error, warning and message, and the package provides constructors for each class (e.g., `library_error()`, `value_warning()` or `deprecated_message()`).
 
 
 ## Custom conditions
@@ -102,3 +101,8 @@ The package also assists in augmenting third party functions with specialized co
 # Suppress the warning and instead raise a value_error
 tryCatch(sqrt(-1), warning = as_value_error("sqrt of negative value"))
 ```
+
+
+## Creating conditions in compiled code
+
+You can link against `conditions` from C/C++ to use the functions exported [here](https://github.com/mllg/conditions/blob/master/inst/include/conditions.h).
