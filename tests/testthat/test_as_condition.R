@@ -5,7 +5,7 @@ test_that("standardized condition converters", {
   funs = ls(ns)
   funs = funs[grepl("^as_[a-z]+_(error|warning|message)", funs)]
   funs = split(funs, gsub("as_[a-z]+_((error|warning|message))", "\\1", funs))
-  cond = io_message("replace me")
+  cond = condition_message("io", "replace me")
   as_error("foo") -> x
 
   for (name in funs$message) {

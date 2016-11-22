@@ -6,7 +6,7 @@ mymessage = function(condition) { .Call(cmessage, condition) }
 
 test_that("stop", {
   expect_error(mystop("foo"), "inherit")
-  cond = missing_error("foo")
+  cond = condition_error("missing", "foo")
   expect_error(mystop(cond), "foo")
 
   res = tryCatch(mystop(cond),
@@ -18,7 +18,7 @@ test_that("stop", {
 
 test_that("warn", {
   expect_error(mywarn("foo"), "inherit")
-  cond = missing_warning("foo")
+  cond = condition_warning("missing", "foo")
   expect_warning(mywarn(cond), "foo")
 
   res = tryCatch(mywarn(cond),
@@ -30,7 +30,7 @@ test_that("warn", {
 
 test_that("message", {
   expect_error(mywarn("foo"), "inherit")
-  cond = missing_message("foo")
+  cond = condition_message("missing", "foo")
   expect_message(mymessage(cond), "foo")
 
   res = tryCatch(mymessage(cond),

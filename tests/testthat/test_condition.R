@@ -35,7 +35,7 @@ test_that("standardized condition constructors", {
   funs = funs[grepl("^[a-z]+_(error|warning|message)", funs) & !grepl("^(condition_|as_)", funs)]
   for (name in funs) {
     f = match.fun(name)
-    x = f("<grepme>")
+    x = tryCatch(f("<grepme>"), condition = function(e) e)
     parts = strsplit(name, "_")[[1L]]
     check_structure(x, c(name, parts[2L]), pattern = "<grepme>")
   }

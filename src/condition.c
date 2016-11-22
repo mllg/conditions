@@ -47,7 +47,7 @@ static inline bool is_string(SEXP str) {
     return (isString(str) && length(str) == 1 && STRING_ELT(str, 0) != NA_STRING && length(STRING_ELT(str, 0)) > 0);
 }
 
-static SEXP condition_(const char * type, SEXP class, SEXP message, SEXP call) {
+static SEXP condition_(const char * type, SEXP class, SEXP message, SEXP call, SEXP attach) {
     if (!is_string(class))
         cstop(condition_error("assertion", "Argument 'class' must be a single, non-missing, non-empty string", R_NilValue));
     if (!is_string(message))
@@ -55,13 +55,19 @@ static SEXP condition_(const char * type, SEXP class, SEXP message, SEXP call) {
     if (!isLanguage(call))
         cstop(condition_error("assertion", "Argument 'call' must be NULL or a language object", R_NilValue));
 
-    SEXP cond = PROTECT(allocVector(VECSXP, 2));
+    const bool has_attach = length(attach) > 0;
+
+    SEXP cond = PROTECT(allocVector(VECSXP, 2 + has_attach));
     SET_VECTOR_ELT(cond, 0, message);
     SET_VECTOR_ELT(cond, 1, call);
+    if (has_attach)
+        SET_VECTOR_ELT(cond, 2, attach);
 
-    SEXP names = PROTECT(allocVector(STRSXP, 2));
+    SEXP names = PROTECT(allocVector(STRSXP, 2 + has_attach));
     SET_STRING_ELT(names, 0, mkChar("message"));
     SET_STRING_ELT(names, 1, mkChar("call"));
+    if (has_attach)
+        SET_STRING_ELT(names, 2, mkChar("attached"));
     setAttrib(cond, R_NamesSymbol, names);
 
     SEXP cl = PROTECT(allocVector(STRSXP, 3));
@@ -76,14 +82,14 @@ static SEXP condition_(const char * type, SEXP class, SEXP message, SEXP call) {
     return cond;
 }
 
-SEXP condition_message_(SEXP class, SEXP message, SEXP call) {
-    return condition_("message", class, message, call);
+SEXP condition_message_(SEXP class, SEXP message, SEXP call, SEXP attach) {
+    return condition_("message", class, message, call, attach);
 }
 
-SEXP condition_warning_(SEXP class, SEXP message, SEXP call) {
-    return condition_("warning", class, message, call);
+SEXP condition_warning_(SEXP class, SEXP message, SEXP call, SEXP attach) {
+    return condition_("warning", class, message, call, attach);
 }
 
-SEXP condition_error_(SEXP class, SEXP message, SEXP call) {
-    return condition_("error", class, message, call);
+SEXP condition_error_(SEXP class, SEXP message, SEXP call, SEXP attach) {
+    return condition_("error", class, message, call, attach);
 }

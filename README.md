@@ -22,11 +22,11 @@ library(conditions)
 
 f = function(x) {
   if (!is.numeric(x))
-    stop(type_error("x must be numeric"))
+    type_error("x must be numeric")
   if (length(x) != 1)
-    stop(length_error("x must have length 1"))
+    length_error("x must have length 1")
   if (any(x < 0))
-    stop(value_error("x may not be negative"))
+    value_error("x may not be negative")
   log(x)
 }
 ```
@@ -48,9 +48,9 @@ It is also possible to catch warnings and messages, as illustrated here:
 ```{r}
 f = function(x) {
   if (x %% 2)
-    warning(value_warning("foo"))
+    value_warning("foo")
   else
-    message(value_message("bar"))
+    value_message("bar")
 }
 
 tryCatch(f(1),
@@ -90,9 +90,9 @@ The function `condition_warning` constructs a warning condition with a custom ty
 ```{r}
 res = mean(integer(0), na.rm = TRUE)
 if (is.nan(res)) {
-  warning(condition_warning("nan", "NaN produced in mean()"))
+  condition_warning("nan", "NaN produced in mean()")
 } else if (is.na(res)) {
-  warning(condition_warning("na", "NA values produced in mean()"))
+  condition_warning("na", "NA values produced in mean()")
 }
 ```
 

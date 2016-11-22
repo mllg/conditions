@@ -30,7 +30,7 @@ as_message = function(class, message = NULL) {
   force(message)
   function(e) {
     stopifnot(is_condition(e))
-    message(.Call(condition_message_, class, message %??% e$message, e$call))
+    message(.Call(condition_message_, class, message %??% e$message, e$call, NULL))
   }
 }
 
@@ -41,7 +41,7 @@ as_warning = function(class, message = NULL) {
   force(message)
   function(e) {
     stopifnot(is_condition(e))
-    warning(.Call(condition_warning_, class, message %??% e$message, e$call))
+    warning(.Call(condition_warning_, class, message %??% e$message, e$call, NULL))
   }
 }
 
@@ -52,6 +52,6 @@ as_error = function(class, message = NULL) {
   force(message)
   function(e) {
     stopifnot(is_condition(e))
-    stop(.Call(condition_error_, class, message %??% e$message, e$call))
+    stop(.Call(condition_error_, class, message %??% e$message, e$call, NULL))
   }
 }

@@ -49,97 +49,97 @@
 \alias{value_warning}
 \title{Generate a custom condition}
 \usage{
-assertion_message(message, call = sys.call(-1L))
+assertion_message(message, call = sys.call(-1L), attach = NULL)
 
-deprecated_message(message, call = sys.call(-1L))
+deprecated_message(message, call = sys.call(-1L), attach = NULL)
 
-dimension_message(message, call = sys.call(-1L))
+dimension_message(message, call = sys.call(-1L), attach = NULL)
 
-future_message(message, call = sys.call(-1L))
+future_message(message, call = sys.call(-1L), attach = NULL)
 
-index_message(message, call = sys.call(-1L))
+index_message(message, call = sys.call(-1L), attach = NULL)
 
-io_message(message, call = sys.call(-1L))
+io_message(message, call = sys.call(-1L), attach = NULL)
 
-length_message(message, call = sys.call(-1L))
+length_message(message, call = sys.call(-1L), attach = NULL)
 
-library_message(message, call = sys.call(-1L))
+library_message(message, call = sys.call(-1L), attach = NULL)
 
-lookup_message(message, call = sys.call(-1L))
+lookup_message(message, call = sys.call(-1L), attach = NULL)
 
-missing_message(message, call = sys.call(-1L))
+missing_message(message, call = sys.call(-1L), attach = NULL)
 
-name_message(message, call = sys.call(-1L))
+name_message(message, call = sys.call(-1L), attach = NULL)
 
-runtime_message(message, call = sys.call(-1L))
+runtime_message(message, call = sys.call(-1L), attach = NULL)
 
-type_message(message, call = sys.call(-1L))
+type_message(message, call = sys.call(-1L), attach = NULL)
 
-value_message(message, call = sys.call(-1L))
+value_message(message, call = sys.call(-1L), attach = NULL)
 
-assertion_warning(message, call = sys.call(-1L))
+assertion_warning(message, call = sys.call(-1L), attach = NULL)
 
-deprecated_warning(message, call = sys.call(-1L))
+deprecated_warning(message, call = sys.call(-1L), attach = NULL)
 
-dimension_warning(message, call = sys.call(-1L))
+dimension_warning(message, call = sys.call(-1L), attach = NULL)
 
-future_warning(message, call = sys.call(-1L))
+future_warning(message, call = sys.call(-1L), attach = NULL)
 
-index_warning(message, call = sys.call(-1L))
+index_warning(message, call = sys.call(-1L), attach = NULL)
 
-io_warning(message, call = sys.call(-1L))
+io_warning(message, call = sys.call(-1L), attach = NULL)
 
-length_warning(message, call = sys.call(-1L))
+length_warning(message, call = sys.call(-1L), attach = NULL)
 
-library_warning(message, call = sys.call(-1L))
+library_warning(message, call = sys.call(-1L), attach = NULL)
 
-lookup_warning(message, call = sys.call(-1L))
+lookup_warning(message, call = sys.call(-1L), attach = NULL)
 
-missing_warning(message, call = sys.call(-1L))
+missing_warning(message, call = sys.call(-1L), attach = NULL)
 
-name_warning(message, call = sys.call(-1L))
+name_warning(message, call = sys.call(-1L), attach = NULL)
 
-runtime_warning(message, call = sys.call(-1L))
+runtime_warning(message, call = sys.call(-1L), attach = NULL)
 
-type_warning(message, call = sys.call(-1L))
+type_warning(message, call = sys.call(-1L), attach = NULL)
 
-value_warning(message, call = sys.call(-1L))
+value_warning(message, call = sys.call(-1L), attach = NULL)
 
-assertion_error(message, call = sys.call(-1L))
+assertion_error(message, call = sys.call(-1L), attach = NULL)
 
-deprecated_error(message, call = sys.call(-1L))
+deprecated_error(message, call = sys.call(-1L), attach = NULL)
 
-dimension_error(message, call = sys.call(-1L))
+dimension_error(message, call = sys.call(-1L), attach = NULL)
 
-future_error(message, call = sys.call(-1L))
+future_error(message, call = sys.call(-1L), attach = NULL)
 
-index_error(message, call = sys.call(-1L))
+index_error(message, call = sys.call(-1L), attach = NULL)
 
-io_error(message, call = sys.call(-1L))
+io_error(message, call = sys.call(-1L), attach = NULL)
 
-length_error(message, call = sys.call(-1L))
+length_error(message, call = sys.call(-1L), attach = NULL)
 
-library_error(message, call = sys.call(-1L))
+library_error(message, call = sys.call(-1L), attach = NULL)
 
-lookup_error(message, call = sys.call(-1L))
+lookup_error(message, call = sys.call(-1L), attach = NULL)
 
-missing_error(message, call = sys.call(-1L))
+missing_error(message, call = sys.call(-1L), attach = NULL)
 
-name_error(message, call = sys.call(-1L))
+name_error(message, call = sys.call(-1L), attach = NULL)
 
-runtime_error(message, call = sys.call(-1L))
+runtime_error(message, call = sys.call(-1L), attach = NULL)
 
-type_error(message, call = sys.call(-1L))
+type_error(message, call = sys.call(-1L), attach = NULL)
 
-value_error(message, call = sys.call(-1L))
+value_error(message, call = sys.call(-1L), attach = NULL)
 
 condition(type, class = character(0L), message, call = sys.call(-1L))
 
-condition_error(class, message, call = sys.call(-1L))
+condition_error(class, message, call = sys.call(-1L), attach = NULL)
 
-condition_warning(class, message, call = sys.call(-1L))
+condition_warning(class, message, call = sys.call(-1L), attach = NULL)
 
-condition_message(class, message, call = sys.call(-1L))
+condition_message(class, message, call = sys.call(-1L), attach = NULL)
 }
 \arguments{
 \item{message}{[\code{character(1)}]\cr
@@ -147,6 +147,10 @@ Information about the condition.}
 
 \item{call}{[\code{call} | \code{NULL}]\cr
 Call stack.}
+
+\item{attach}{[ANY]\cr
+Object to attach to the condition. Can be accessed via \code{cond$attached}
+in a \code{\link[base]{tryCatch}} (see example).}
 
 \item{type}{[\code{character(1)}]\cr
 Should be one of \dQuote{error}, \dQuote{warning} or \dQuote{message}.}
@@ -192,17 +196,19 @@ class(e)
 
 # To signal the condition, use message/warning/stop.
 \dontrun{
-message(io_message("Failed to load file"))
-warning(io_warning("Failed to load file"))
-stop(io_error("Failed to load file"))
+message(e)
+warning(e)
+stop(e)
 }
 
-# These are equivalent:
+# These are equivalent (except the call):
 w1 = condition("warning", "dimension_warning", "foo")
 w2 = condition_warning("dimension", "foo")
-w3 = dimension_warning("foo")
+w3 = tryCatch(dimension_warning("foo"), condition = function(e) e)
 
-identical(w1, w2)
-identical(w2, w3)
+# Attaching additional information:
+e = condition_error("deprecated", "Function is deprecated",
+  attach = packageVersion("conditions"))
+e$attached
 }
 

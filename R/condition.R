@@ -35,6 +35,9 @@
 #'   Information about the condition.
 #' @param call [\code{call} | \code{NULL}]\cr
 #'   Call stack.
+#' @param attach [ANY]\cr
+#'   Object to attach to the condition. Can be accessed via \code{cond$attached}
+#'   in a \code{\link[base]{tryCatch}} (see example).
 #' @return [\code{condition}].
 #' @export
 #' @examples
@@ -45,18 +48,20 @@
 #'
 #' # To signal the condition, use message/warning/stop.
 #' \dontrun{
-#' message(io_message("Failed to load file"))
-#' warning(io_warning("Failed to load file"))
-#' stop(io_error("Failed to load file"))
+#' message(e)
+#' warning(e)
+#' stop(e)
 #' }
 #'
-#' # These are equivalent:
+#' # These are equivalent (except the call):
 #' w1 = condition("warning", "dimension_warning", "foo")
 #' w2 = condition_warning("dimension", "foo")
-#' w3 = dimension_warning("foo")
+#' w3 = tryCatch(dimension_warning("foo"), condition = function(e) e)
 #'
-#' identical(w1, w2)
-#' identical(w2, w3)
+#' # Attaching additional information:
+#' e = condition_error("deprecated", "Function is deprecated",
+#'   attach = packageVersion("conditions"))
+#' e$attached
 condition = function(type, class = character(0L), message, call = sys.call(-1L)) {
   x = list(message = message, call = call)
   class(x) = c(class, type, "condition")
@@ -65,18 +70,18 @@ condition = function(type, class = character(0L), message, call = sys.call(-1L))
 
 #' @rdname condition
 #' @export
-condition_error = function(class, message, call = sys.call(-1L)) {
-  .Call(condition_error_, class, message, call)
+condition_error = function(class, message, call = sys.call(-1L), attach = NULL) {
+  .Call(condition_error_, class, message, call, attach)
 }
 
 #' @rdname condition
 #' @export
-condition_warning = function(class, message, call = sys.call(-1L)) {
-  .Call(condition_warning_, class, message, call)
+condition_warning = function(class, message, call = sys.call(-1L), attach = NULL) {
+  .Call(condition_warning_, class, message, call, attach)
 }
 
 #' @rdname condition
 #' @export
-condition_message = function(class, message, call = sys.call(-1L)) {
-  .Call(condition_message_, class, message, call)
+condition_message = function(class, message, call = sys.call(-1L), attach = NULL) {
+  .Call(condition_message_, class, message, call, attach)
 }
