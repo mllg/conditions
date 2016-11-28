@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include "condition.h"
 #include "signal.h"
+#include "signal.h"
 
 /*****************************************************************************/
 /* C interface                                                               */
@@ -61,7 +62,7 @@ static SEXP condition_(const char * type, SEXP class, SEXP message, SEXP call, S
     SET_VECTOR_ELT(cond, 0, message);
     SET_VECTOR_ELT(cond, 1, call);
     if (has_attach)
-        SET_VECTOR_ELT(cond, 2, attach);
+        SET_VECTOR_ELT(cond, 2, lazy_duplicate(attach));
 
     SEXP names = PROTECT(allocVector(STRSXP, 2 + has_attach));
     SET_STRING_ELT(names, 0, mkChar("message"));
