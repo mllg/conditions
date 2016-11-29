@@ -15,7 +15,7 @@ devtools::install_github("mllg/conditions")
 
 This package provides standardized conditions and allows to conveniently create own conditions.
 Conditions can be caught and handled via `tryCatch`.
-Consider the following small wrapper around `log(x)`:
+Consider the following small wrapper function around `log(x)`:
 
 ```{r}
 library(conditions)
@@ -30,8 +30,8 @@ f = function(x) {
   log(x)
 }
 ```
-The functions `type_error()`, `length_error()` and `value_error()` create specialized conditions which are internally signaled using `stop()`.
-By giving conditions a more specific type, the user can react to the misspecified input in a meaningful way.
+The functions `type_error()`, `length_error()` and `value_error()` create specialized conditions which are signaled using `stop()`.
+By giving conditions a more specific type, the user can react in a meaningful way.
 For instance, to suppress the value error for negative input and instead just return `0`, the function can be called with:
 ```{r}
 tryCatch(f(-5), value_error = function(e) 0)
