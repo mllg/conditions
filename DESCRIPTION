@@ -4,9 +4,10 @@ Title: Standardized Conditions for R
 Version: 0.1
 Author: Michel Lang <michellang@gmail.com>
 Maintainer: Michel Lang <michellang@gmail.com>
-Description: Assists in signaling specialized conditions, i.e., typed errors,
+Description: Implements specialized conditions, i.e., typed errors,
     warnings and messages. Offers a set of standardized conditions (value error,
-    missing warning, ...) as well as  helpers to create custom conditions.
+    missing warning, ...) as well as helpers to create and convert custom
+    conditions.
 License: BSD_2_clause + file LICENSE
 URL: https://github.com/mllg/conditions
 BugReports: https://github.com/mllg/conditions/issues

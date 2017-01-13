@@ -13,7 +13,7 @@ devtools::install_github("mllg/conditions")
 
 ## Base functionality
 
-This package provides standardized conditions and allows to conveniently create own conditions.
+This package provides some standardized conditions and allows to conveniently create own conditions.
 Conditions can be caught and handled via `tryCatch`.
 Consider the following small wrapper function around `log(x)`:
 
@@ -61,7 +61,9 @@ tryCatch(f(1),
 
 ## Standardized conditions
 
-Package developers are encouraged to use the standardized condition types where appropriate (derived from [Python exceptions](https://docs.python.org/2/library/exceptions.html)):
+The package comes with some standardized condition types, as derived from [Python exceptions](https://docs.python.org/2/library/exceptions.html)).
+Note that it is an ongoing effort to form a working group to define more/other types, with a hierarchical structure (see [here](https://github.com/RConsortium/wishlist/issues/6)).
+As a consequence, some types implemented in this package might get deprecated in the future.
 
 * `assertion`: Assertion (on user input) failed.
 * `deprecated`: Feature is deprecated.
@@ -103,6 +105,6 @@ tryCatch(sqrt(-1), warning = as_value_error("sqrt of negative value"))
 ```
 
 
-## Creating conditions in compiled code
+## Raising custom conditions from compiled code
 
 You can link against `conditions` from C/C++ to use the functions exported [here](https://github.com/mllg/conditions/blob/master/inst/include/conditions.h).
