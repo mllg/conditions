@@ -12,7 +12,7 @@
         vsnprintf(buf, sizeof buf, message, vargs); \
         va_end(vargs); \
         return fun(class, buf, R_NilValue); \
-    };
+    }
 
 #define SIGNAL(NAME) \
     void attribute_hidden NAME(SEXP condition) { \
@@ -20,14 +20,14 @@
         if (fun == NULL) \
             fun = (SEXP(*)(SEXP)) R_GetCCallable("conditions", #NAME); \
         fun(condition); \
-    };
+    }
 
-CONDITION(condition_error);
-CONDITION(condition_warning);
-CONDITION(condition_message);
-SIGNAL(cstop);
-SIGNAL(cwarn);
-SIGNAL(cmessage);
+CONDITION(condition_error)
+CONDITION(condition_warning)
+CONDITION(condition_message)
+SIGNAL(cstop)
+SIGNAL(cwarn)
+SIGNAL(cmessage)
 
 #undef CONDITION
 #undef SIGNAL

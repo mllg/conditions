@@ -1,7 +1,11 @@
+^src/.+\.o$
+^src/.+\.so$
 \.swp$
 ^\.agignore$
 ^\.editorconfig$
 ^.travis.yml$
+^\.Rproj\.user$
 ^README\.md$
 ^appveyor\.yml$
 ^vignettes/.+\.html$
+^src/Makevars$
