@@ -6,8 +6,8 @@ Author: Michel Lang <michellang@gmail.com>
 Maintainer: Michel Lang <michellang@gmail.com>
 Description: Implements specialized conditions, i.e., typed errors,
     warnings and messages. Offers a set of standardized conditions (value error,
-    missing warning, ...) as well as helpers to create and convert custom
-    conditions.
+    deprecated warning, io message, ...) in the fashion of Python's built-in
+    exceptions.
 License: BSD_2_clause + file LICENSE
 URL: https://github.com/mllg/conditions
 BugReports: https://github.com/mllg/conditions/issues
