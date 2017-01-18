@@ -18,9 +18,12 @@
 #' @export
 #' @rdname as_condition
 #' @examples
+#' # Turn the warning of sqrt() into a value message
+#' message(tryCatch(sqrt(-1), warning = as_value_message()))
+#'
 #' \dontrun{
 #' # Turn the warning of sqrt() into a value error
-#' tryCatch(sqrt(-1), warning = as_error("value"))
+#' tryCatch(sqrt(-1), warning = as_value_error())
 #'
 #' # Or, alternatively with a custom message:
 #' tryCatch(sqrt(-1), warning = as_value_error("sqrt of negative value"))

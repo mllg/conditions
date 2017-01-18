@@ -206,9 +206,16 @@ w1 = condition("warning", "dimension_warning", "foo")
 w2 = condition_warning("dimension", "foo")
 w3 = tryCatch(dimension_warning("foo"), condition = function(e) e)
 
-# Attaching additional information:
-e = condition_error("deprecated", "Function is deprecated",
-  attach = packageVersion("conditions"))
-e$attached
+# Attach and retrieve additional information
+f = function(x) {
+  if(!is.numeric(x))
+    assertion_error(" must be numeric", attach = x)
+  x^2
+}
+f(1:10)
+
+tryCatch(f(letters), assertion_error = function(e) {
+  message("x must be numeric, but is ", typeof(e$attached))
+})
 }
 
