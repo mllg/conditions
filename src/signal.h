@@ -9,4 +9,3 @@ SEXP cwarn(SEXP condition);
 SEXP cstop(SEXP condition);
 
 #endif
-
