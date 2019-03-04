@@ -18,7 +18,7 @@ static SEXP condition(const char * type, const char * class, const char * messag
 
     SEXP cl = PROTECT(allocVector(STRSXP, 3));
     char buf[256];
-    snprintf(buf, 256, "%s_%s", class, type);
+    snprintf(buf, 255, "%s_%s", class, type);
     SET_STRING_ELT(cl, 0, mkChar(buf));
     SET_STRING_ELT(cl, 1, mkChar(type));
     SET_STRING_ELT(cl, 2, mkChar("condition"));
@@ -50,11 +50,11 @@ static inline bool is_string(SEXP str) {
 
 static SEXP condition_(const char * type, SEXP class, SEXP message, SEXP call, SEXP attach) {
     if (!is_string(class))
-        cstop(condition_error("assertion", "Argument 'class' must be a single, non-missing, non-empty string", R_NilValue));
+        error("Argument 'class' must be a single, non-missing, non-empty string");
     if (!is_string(message))
-        cstop(condition_error("assertion", "Argument 'message' must be a single, non-missing, non-empty string", R_NilValue));
+        error("Argument 'message' must be a single, non-missing, non-empty string");
     if (!isLanguage(call))
-        cstop(condition_error("assertion", "Argument 'call' must be NULL or a language object", R_NilValue));
+        error("Argument 'call' must be NULL or a language object");
 
     const bool has_attach = length(attach) > 0;
 

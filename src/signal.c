@@ -3,7 +3,7 @@
 
 static inline void check_condition(SEXP condition) {
     if (!inherits(condition, "condition"))
-        cstop(condition_error("assertion", "Argument 'condition' must inherit from class 'condition'", R_NilValue));
+        error("Argument 'condition' must inherit from class 'condition'");
 }
 
 static inline SEXP signal_condition(SEXP condition, const char * fun) {
