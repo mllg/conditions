@@ -12,7 +12,7 @@ test_that("stop", {
   res = tryCatch(mystop(cond),
     condition = function(c) { c }
   )
-  expect_is(res, "missing_error")
+  expect_is(res, "missingError")
   expect_is(res, "error")
 })
 
@@ -24,7 +24,7 @@ test_that("warn", {
   res = tryCatch(mywarn(cond),
     condition = function(c) { c }
   )
-  expect_is(res, "missing_warning")
+  expect_is(res, "missingWarning")
   expect_is(res, "warning")
 })
 
@@ -36,6 +36,6 @@ test_that("message", {
   res = tryCatch(mymessage(cond),
     condition = function(c) { c }
   )
-  expect_is(res, "missing_message")
+  expect_is(res, "missingMessage")
   expect_is(res, "message")
 })

@@ -1,2 +1,2 @@
 #' @useDynLib conditions cmessage cwarn cstop
-NULL
+"_PACKAGE"

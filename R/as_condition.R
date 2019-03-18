@@ -32,8 +32,8 @@ as_message = function(class, message = NULL) {
   force(class)
   force(message)
   function(e) {
-    stopifnot(is_condition(e))
-    message(.Call(condition_message_, class, message %??% e$message, e$call, NULL))
+    stopifnot(inherits(e, "condition"))
+    message(.Call(condition_message_, class, message %??% e$message, e$call, NULL, PACKAGE = "conditions"))
   }
 }
 
@@ -43,8 +43,8 @@ as_warning = function(class, message = NULL) {
   force(class)
   force(message)
   function(e) {
-    stopifnot(is_condition(e))
-    warning(.Call(condition_warning_, class, message %??% e$message, e$call, NULL))
+    stopifnot(inherits(e, "condition"))
+    warning(.Call(condition_warning_, class, message %??% e$message, e$call, NULL, PACKAGE = "conditions"))
   }
 }
 
@@ -54,7 +54,7 @@ as_error = function(class, message = NULL) {
   force(class)
   force(message)
   function(e) {
-    stopifnot(is_condition(e))
-    stop(.Call(condition_error_, class, message %??% e$message, e$call, NULL))
+    stopifnot(inherits(e, "condition"))
+    stop(.Call(condition_error_, class, message %??% e$message, e$call, NULL, PACKAGE = "conditions"))
   }
 }

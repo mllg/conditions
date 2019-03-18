@@ -13,39 +13,40 @@ check_structure = function(x, classes = character(0), pattern = NULL) {
 }
 
 test_that("base condition constructors", {
-  x = condition("error", "assertion_error", "foo")
-  check_structure(x, c("assertion_error", "error"), "foo")
+  x = condition("error", "assertionError", "foo")
+  check_structure(x, c("assertionError", "error"), "foo")
 
-  x = condition("warning", "custom_warning", "msg")
-  check_structure(x, c("custom_warning", "warning"), "msg")
+  x = condition("warning", "customWarning", "msg")
+  check_structure(x, c("customWarning", "warning"), "msg")
 
   x = condition_error("value", "msg")
-  check_structure(x, c("value_error", "error"), "msg")
+  check_structure(x, c("valueError", "error"), "msg")
 
   x = condition_warning("lookup", "msg")
-  check_structure(x, c("lookup_warning", "warning"), "msg")
+  check_structure(x, c("lookupWarning", "warning"), "msg")
 
   x = condition_message("missing", "msg")
-  check_structure(x, c("missing_message", "message"), "msg")
+  check_structure(x, c("missingMessage", "message"), "msg")
 })
 
 test_that("standardized condition constructors", {
   ns = asNamespace("conditions")
   funs = ls(ns)
-  funs = funs[grepl("^[a-z]+_(error|warning|message)", funs) & !grepl("^(condition_|as_)", funs)]
+  funs = funs[grepl("^[A-Za-z]+(Error|Warning|Message)", funs) & !grepl("^(condition_|as_)", funs)]
   for (name in funs) {
     f = match.fun(name)
     x = tryCatch(f("<grepme>"), condition = function(e) e)
-    parts = strsplit(name, "_")[[1L]]
-    check_structure(x, c(name, parts[2L]), pattern = "<grepme>")
+
+    classes = c(name, tolower(gsub("[A-Za-z]+((Message|Warning|Error))$", "\\1", name)))
+    check_structure(x, classes, pattern = "<grepme>")
   }
 })
 
 test_that("argument checks", {
   str.error = "non-missing, non-empty string"
-  expect_error(io_error(0), "string")
-  expect_error(io_error(NULL), "string")
-  expect_error(io_error(0), "string")
+  expect_error(ioError(0), "string")
+  expect_error(ioError(NULL), "string")
+  expect_error(ioError(0), "string")
   expect_error(condition_message(NA_character_, "msg"), str.error)
   expect_error(condition_message(character(0), "msg"), str.error)
   expect_error(condition_message(c("a", "b"), "msg"), str.error)

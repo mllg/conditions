@@ -1,7 +1,34 @@
 #include <stdbool.h>
+#include <ctype.h>
 #include "condition.h"
 #include "signal.h"
-#include "signal.h"
+
+static void set_condition_names(SEXP cond, Rboolean has_attach) {
+    SEXP names = PROTECT(allocVector(STRSXP, 2));
+    SET_STRING_ELT(names, 0, mkChar("message"));
+    SET_STRING_ELT(names, 1, mkChar("call"));
+    if (has_attach)
+        SET_STRING_ELT(names, 2, mkChar("attached"));
+    setAttrib(cond, R_NamesSymbol, names);
+
+    UNPROTECT(1);
+}
+
+static void set_condition_class(SEXP cond, const char * class, const char * type) {
+    SEXP cl = PROTECT(allocVector(STRSXP, 3));
+
+    char buf[256];
+    snprintf(buf, 255, "%s%s", class, type);
+    R_len_t pos = strlen(class);
+    buf[pos] = toupper(buf[pos]);
+
+    SET_STRING_ELT(cl, 0, mkChar(buf));
+    SET_STRING_ELT(cl, 1, mkChar(type));
+    SET_STRING_ELT(cl, 2, mkChar("condition"));
+    setAttrib(cond, R_ClassSymbol, cl);
+
+    UNPROTECT(1);
+}
 
 /*****************************************************************************/
 /* C interface                                                               */
@@ -11,18 +38,8 @@ static SEXP condition(const char * type, const char * class, const char * messag
     SET_VECTOR_ELT(cond, 0, mkString(message));
     SET_VECTOR_ELT(cond, 1, call);
 
-    SEXP names = PROTECT(allocVector(STRSXP, 2));
-    SET_STRING_ELT(names, 0, mkChar("message"));
-    SET_STRING_ELT(names, 1, mkChar("call"));
-    setAttrib(cond, R_NamesSymbol, names);
-
-    SEXP cl = PROTECT(allocVector(STRSXP, 3));
-    char buf[256];
-    snprintf(buf, 255, "%s_%s", class, type);
-    SET_STRING_ELT(cl, 0, mkChar(buf));
-    SET_STRING_ELT(cl, 1, mkChar(type));
-    SET_STRING_ELT(cl, 2, mkChar("condition"));
-    setAttrib(cond, R_ClassSymbol, cl);
+    set_condition_names(cond, FALSE);
+    set_condition_class(cond, class, type);
 
     UNPROTECT(3);
     return cond;
@@ -64,22 +81,10 @@ static SEXP condition_(const char * type, SEXP class, SEXP message, SEXP call, S
     if (has_attach)
         SET_VECTOR_ELT(cond, 2, lazy_duplicate(attach));
 
-    SEXP names = PROTECT(allocVector(STRSXP, 2 + has_attach));
-    SET_STRING_ELT(names, 0, mkChar("message"));
-    SET_STRING_ELT(names, 1, mkChar("call"));
-    if (has_attach)
-        SET_STRING_ELT(names, 2, mkChar("attached"));
-    setAttrib(cond, R_NamesSymbol, names);
+    set_condition_names(cond, has_attach);
+    set_condition_class(cond,CHAR(STRING_ELT(class, 0)), type);
 
-    SEXP cl = PROTECT(allocVector(STRSXP, 3));
-    char buf[256];
-    snprintf(buf, 256, "%s_%s", CHAR(STRING_ELT(class, 0)), type);
-    SET_STRING_ELT(cl, 0, mkChar(buf));
-    SET_STRING_ELT(cl, 1, mkChar(type));
-    SET_STRING_ELT(cl, 2, mkChar("condition"));
-    setAttrib(cond, R_ClassSymbol, cl);
-
-    UNPROTECT(3);
+    UNPROTECT(1);
     return cond;
 }
 

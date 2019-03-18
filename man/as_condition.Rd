@@ -4,48 +4,51 @@
 \alias{as_message}
 \alias{as_warning}
 \alias{as_error}
-\alias{as_assertion_message}
-\alias{as_deprecated_message}
-\alias{as_dimension_message}
-\alias{as_future_message}
-\alias{as_index_message}
-\alias{as_io_message}
-\alias{as_length_message}
-\alias{as_library_message}
-\alias{as_lookup_message}
-\alias{as_missing_message}
-\alias{as_name_message}
-\alias{as_runtime_message}
-\alias{as_type_message}
-\alias{as_value_message}
-\alias{as_assertion_warning}
-\alias{as_deprecated_warning}
-\alias{as_dimension_warning}
-\alias{as_future_warning}
-\alias{as_index_warning}
-\alias{as_io_warning}
-\alias{as_length_warning}
-\alias{as_library_warning}
-\alias{as_lookup_warning}
-\alias{as_missing_warning}
-\alias{as_name_warning}
-\alias{as_runtime_warning}
-\alias{as_type_warning}
-\alias{as_value_warning}
-\alias{as_assertion_error}
-\alias{as_deprecated_error}
-\alias{as_dimension_error}
-\alias{as_future_error}
-\alias{as_index_error}
-\alias{as_io_error}
-\alias{as_length_error}
-\alias{as_library_error}
-\alias{as_lookup_error}
-\alias{as_missing_error}
-\alias{as_name_error}
-\alias{as_runtime_error}
-\alias{as_type_error}
-\alias{as_value_error}
+\alias{as_assertionMessage}
+\alias{as_deprecatedMessage}
+\alias{as_defunctMessage}
+\alias{as_dimensionMessage}
+\alias{as_futureMessage}
+\alias{as_indexMessage}
+\alias{as_ioMessage}
+\alias{as_lengthMessage}
+\alias{as_libraryMessage}
+\alias{as_lookupMessage}
+\alias{as_missingMessage}
+\alias{as_nameMessage}
+\alias{as_runtimeMessage}
+\alias{as_typeMessage}
+\alias{as_valueMessage}
+\alias{as_assertionWarning}
+\alias{as_deprecatedWarning}
+\alias{as_defunctWarning}
+\alias{as_dimensionWarning}
+\alias{as_futureWarning}
+\alias{as_indexWarning}
+\alias{as_ioWarning}
+\alias{as_lengthWarning}
+\alias{as_libraryWarning}
+\alias{as_lookupWarning}
+\alias{as_missingWarning}
+\alias{as_nameWarning}
+\alias{as_runtimeWarning}
+\alias{as_typeWarning}
+\alias{as_valueWarning}
+\alias{as_assertionError}
+\alias{as_deprecatedError}
+\alias{as_defunctError}
+\alias{as_dimensionError}
+\alias{as_futureError}
+\alias{as_indexError}
+\alias{as_ioError}
+\alias{as_lengthError}
+\alias{as_libraryError}
+\alias{as_lookupError}
+\alias{as_missingError}
+\alias{as_nameError}
+\alias{as_runtimeError}
+\alias{as_typeError}
+\alias{as_valueError}
 \title{Convert Conditions}
 \usage{
 as_message(class, message = NULL)
@@ -54,89 +57,95 @@ as_warning(class, message = NULL)
 
 as_error(class, message = NULL)
 
-as_assertion_message(message = NULL)
+as_assertionMessage(message = NULL)
 
-as_deprecated_message(message = NULL)
+as_deprecatedMessage(message = NULL)
 
-as_dimension_message(message = NULL)
+as_defunctMessage(message = NULL)
 
-as_future_message(message = NULL)
+as_dimensionMessage(message = NULL)
 
-as_index_message(message = NULL)
+as_futureMessage(message = NULL)
 
-as_io_message(message = NULL)
+as_indexMessage(message = NULL)
 
-as_length_message(message = NULL)
+as_ioMessage(message = NULL)
 
-as_library_message(message = NULL)
+as_lengthMessage(message = NULL)
 
-as_lookup_message(message = NULL)
+as_libraryMessage(message = NULL)
 
-as_missing_message(message = NULL)
+as_lookupMessage(message = NULL)
 
-as_name_message(message = NULL)
+as_missingMessage(message = NULL)
 
-as_runtime_message(message = NULL)
+as_nameMessage(message = NULL)
 
-as_type_message(message = NULL)
+as_runtimeMessage(message = NULL)
 
-as_value_message(message = NULL)
+as_typeMessage(message = NULL)
 
-as_assertion_warning(message = NULL)
+as_valueMessage(message = NULL)
 
-as_deprecated_warning(message = NULL)
+as_assertionWarning(message = NULL)
 
-as_dimension_warning(message = NULL)
+as_deprecatedWarning(message = NULL)
 
-as_future_warning(message = NULL)
+as_defunctWarning(message = NULL)
 
-as_index_warning(message = NULL)
+as_dimensionWarning(message = NULL)
 
-as_io_warning(message = NULL)
+as_futureWarning(message = NULL)
 
-as_length_warning(message = NULL)
+as_indexWarning(message = NULL)
 
-as_library_warning(message = NULL)
+as_ioWarning(message = NULL)
 
-as_lookup_warning(message = NULL)
+as_lengthWarning(message = NULL)
 
-as_missing_warning(message = NULL)
+as_libraryWarning(message = NULL)
 
-as_name_warning(message = NULL)
+as_lookupWarning(message = NULL)
 
-as_runtime_warning(message = NULL)
+as_missingWarning(message = NULL)
 
-as_type_warning(message = NULL)
+as_nameWarning(message = NULL)
 
-as_value_warning(message = NULL)
+as_runtimeWarning(message = NULL)
 
-as_assertion_error(message = NULL)
+as_typeWarning(message = NULL)
 
-as_deprecated_error(message = NULL)
+as_valueWarning(message = NULL)
 
-as_dimension_error(message = NULL)
+as_assertionError(message = NULL)
 
-as_future_error(message = NULL)
+as_deprecatedError(message = NULL)
 
-as_index_error(message = NULL)
+as_defunctError(message = NULL)
 
-as_io_error(message = NULL)
+as_dimensionError(message = NULL)
 
-as_length_error(message = NULL)
+as_futureError(message = NULL)
 
-as_library_error(message = NULL)
+as_indexError(message = NULL)
 
-as_lookup_error(message = NULL)
+as_ioError(message = NULL)
 
-as_missing_error(message = NULL)
+as_lengthError(message = NULL)
 
-as_name_error(message = NULL)
+as_libraryError(message = NULL)
 
-as_runtime_error(message = NULL)
+as_lookupError(message = NULL)
 
-as_type_error(message = NULL)
+as_missingError(message = NULL)
 
-as_value_error(message = NULL)
+as_nameError(message = NULL)
+
+as_runtimeError(message = NULL)
+
+as_typeError(message = NULL)
+
+as_valueError(message = NULL)
 }
 \arguments{
 \item{class}{[\code{character}]\cr

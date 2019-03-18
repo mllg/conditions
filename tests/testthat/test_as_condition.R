@@ -3,8 +3,8 @@ context("as_conditions")
 test_that("standardized condition converters", {
   ns = asNamespace("conditions")
   funs = ls(ns)
-  funs = funs[grepl("^as_[a-z]+_(error|warning|message)", funs)]
-  funs = split(funs, gsub("as_[a-z]+_((error|warning|message))", "\\1", funs))
+  funs = funs[grepl("^as_[A-Za-z]+(Error|Warning|Message)$", funs)]
+  funs = split(funs, tolower(gsub("^as_[A-Za-z]+((Error|Warning|Message))$", "\\1", funs)))
   cond = condition_message("io", "replace me")
   as_error("foo") -> x
 
